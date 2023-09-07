@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+using MiniProjectGuestBook;
+
+do
+{
+    GuestList.GetPartyInfo();
+    GuestList.IncreaseGuestsNumber();
+
+} while (true);
+
+GuestList.PrintGuestList();
