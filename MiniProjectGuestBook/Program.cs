@@ -16,3 +16,5 @@ do
 } while (wantsToProceed == false) ;
 
 GuestList.PrintGuestList(guestList, guestCount);
+
+Console.ReadLine();

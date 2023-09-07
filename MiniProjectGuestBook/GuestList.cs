@@ -11,8 +11,8 @@ public static class GuestList
 
     public static void WelcomeToApp()
     {
-        Console.WriteLine("Welcome to Guest Book App! " +
-            "The app that meets all your guest list creation needs!");
+        Console.WriteLine("Welcome to the \"GuestBookApp\"!" +
+            " The app designed to meet all of your guest list creation needs.");
         Console.WriteLine();
         Console.WriteLine("Press enter to continue.");
         Console.ReadLine();
@@ -70,7 +70,7 @@ public static class GuestList
     public static void PrintGuestList(List<string> guestList, int guestCount)
     {
         Console.Clear();
-        Console.WriteLine($"Guestbook:");
+        Console.WriteLine($"The Guest Book:");
         foreach (string guestName in guestList)
         {
             Console.WriteLine(guestName);
