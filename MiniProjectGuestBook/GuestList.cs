@@ -26,12 +26,19 @@ public static class GuestList
         Console.Clear();
 
 
-        Console.Write($"Write your name: ");
+        do
+        {
+            Console.Write($"Write your name: ");
             readResult = Console.ReadLine();
             if (readResult != null)
             {
                 guestName = readResult.Trim();
-            }
+                if(guestName == "")
+                {
+                    Console.WriteLine("Input is incorrect. Try again.");
+                }
+            } 
+        } while (guestName == "");
 
         do
         {
@@ -42,7 +49,6 @@ public static class GuestList
                 if(int.TryParse(readResult, out partyNumber) == false)
                 {
                     Console.WriteLine("Input is incorrect. Try again.");
-                    Console.WriteLine();
                 }
             }
         } while (partyNumber <= 0);
@@ -65,7 +71,6 @@ public static class GuestList
     {
         Console.Clear();
         Console.WriteLine($"Guestbook:");
-        Console.WriteLine("");
         foreach (string guestName in guestList)
         {
             Console.WriteLine(guestName);
@@ -81,8 +86,8 @@ public static class GuestList
         do
         {
             Console.WriteLine("\nPress enter to add more guests or " +
-            "type: \"next\" when you are finished adding guests " +
-            "and are ready to proceed to the guestbook.\n");
+            "type: \"next\" when adding guests is finished" +
+            "and you are ready to proceed to the guestbook.\n");
             readResult = Console.ReadLine();
             if (readResult != null)
             {
