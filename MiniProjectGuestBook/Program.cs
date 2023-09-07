@@ -1,11 +1,16 @@
 ﻿
 using MiniProjectGuestBook;
+List<string> guestList = new List<string>();
+int guestCount = 0;
+bool wantsToProceed = false;
 
 do
 {
-    GuestList.GetPartyInfo();
-    GuestList.IncreaseGuestsNumber();
+    (string guestName, int partySize) = GuestList.GetPartyInfo();
+    GuestList.AddToGuestList(guestList, guestName);
+    GuestList.IncreaseGuestNumber(guestCount, partySize);
+    GuestList.WantsToProceed();
 
-} while (true);
+} while (wantsToProceed == false) ;
 
-GuestList.PrintGuestList();
+GuestList.PrintGuestList(guestList, guestCount);
