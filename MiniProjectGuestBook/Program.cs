@@ -4,17 +4,17 @@ List<string> guestList = new List<string>();
 int guestCount = 0;
 bool wantsToProceed = false;
 
-GuestList.WelcomeToApp();
+GuestListLogic.WelcomeToApp();
 
 do
 {
-    (string guestName, int partySize) = GuestList.GetPartyInfo();
-    GuestList.AddToGuestList(guestList, guestName);
-    guestCount = GuestList.IncreaseGuestNumber(guestCount, partySize);
-    wantsToProceed = GuestList.WantsToProceed();
+    (string guestName, int partySize) = GuestListLogic.GetPartyInfo();
+    GuestListLogic.AddToGuestList(guestList, guestName, partySize);
+    guestCount = GuestListLogic.IncreaseGuestNumber(guestCount, partySize);
+    wantsToProceed = GuestListLogic.WantsToProceed();
 
 } while (wantsToProceed == false) ;
 
-GuestList.PrintGuestList(guestList, guestCount);
+GuestListLogic.PrintGuestList(guestList, guestCount);
 
 Console.ReadLine();

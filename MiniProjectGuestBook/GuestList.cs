@@ -1,63 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MiniProjectGuestBook;
 
-public static class GuestList
+public static class GuestListLogic
 {
 
     public static void WelcomeToApp()
     {
-        Console.WriteLine("Welcome to the \"GuestBookApp\"!" +
-            " The app designed to meet all of your guest list creation needs.");
+        Console.WriteLine("Welcome to the \"GuestBookApp\"!");
         Console.WriteLine();
         Console.WriteLine("Press enter to continue.");
         Console.ReadLine();
     }
-    public static (string guestName, int partyNumber) GetPartyInfo()
+    public static (string partyName, int partySize) GetPartyInfo()
     {
         string? readResult = "";
-        string guestName = "";
-        int partyNumber = 0;
+        string partyName = "";
+        int partySize = 0;
 
         Console.Clear();
 
 
         do
         {
-            Console.Write($"Write your name: ");
+            Console.Write($"Write your party/group name: ");
             readResult = Console.ReadLine();
             if (readResult != null)
             {
-                guestName = readResult.Trim();
-                if(guestName == "")
+                partyName = readResult.Trim();
+                if (partyName == "")
                 {
-                    Console.WriteLine("Input is incorrect. Try again.");
+                    Console.WriteLine("You haven't entered a name. Try again.");
                 }
-            } 
-        } while (guestName == "");
+            }
+        } while (partyName == "");
 
         do
         {
-            Console.Write($"Write how many people are coming with you: ");
+            Console.Write($"How many people are in the party: ");
             readResult = Console.ReadLine();
             if (readResult != null)
             {
-                if(int.TryParse(readResult, out partyNumber) == false)
+                if (int.TryParse(readResult, out partySize) == false)
                 {
-                    Console.WriteLine("Input is incorrect. Try again.");
+                    Console.WriteLine("This is not a digit numer. Try again.");
+                }
+                else if (partySize > 10)
+                {
+                    Console.WriteLine("Your group is too big. You have to split it into two groups.");
                 }
             }
-        } while (partyNumber <= 0);
+        } while (partySize <= 0 && partySize <=10);
 
-        return (guestName, partyNumber);
+        return (partyName, partySize);
     }
-    public static List<string> AddToGuestList(List<string> guestList,string guestName)
+    public static List<string> AddToGuestList(List<string> guestList, string partyName, int partySize)
     {
-        guestList.Add(guestName);
+        guestList.Add($"{partyName} - {partySize} guests");
 
         return guestList;
     }
@@ -71,12 +75,12 @@ public static class GuestList
     {
         Console.Clear();
         Console.WriteLine($"The Guest Book:");
-        foreach (string guestName in guestList)
+        foreach (string partyInfo in guestList)
         {
-            Console.WriteLine(guestName);
+            Console.WriteLine(partyInfo);
         }
         Console.WriteLine();
-        Console.WriteLine($"The event will be attended by {guestCount} guests.");
+        Console.WriteLine($"The event was attended by a total of {guestCount} guests.");
     }
     public static bool WantsToProceed()
     {
@@ -85,23 +89,22 @@ public static class GuestList
 
         do
         {
-            Console.WriteLine("\nPress enter to add more guests or " +
-            "type: \"next\" when adding guests is finished" +
-            "and you are ready to proceed to the guestbook.\n");
+            Console.WriteLine("\nType \"next\" to continue adding guests.");
+            Console.WriteLine("Type \"end\" at the end of the party.\n");
             readResult = Console.ReadLine();
             if (readResult != null)
             {
                 readResult = readResult.Trim().ToLower();
-                if (readResult == "next")
+                if (readResult == "end")
                 {
                     wantsToProceed = true;
                 }
-            else if (readResult != "")
+                else if (readResult != "next")
                 {
-                    Console.WriteLine("\nThat was invalid input. Try one more time.");
+                    Console.WriteLine("\nWrite \"next\" or \"end\" to proceed.");
                 }
-            } 
-        } while (readResult != "" && readResult != "next");
+            }
+        } while (readResult != "next" && readResult != "end");
 
         return wantsToProceed;
     }
