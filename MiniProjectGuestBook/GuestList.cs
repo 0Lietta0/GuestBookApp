@@ -52,10 +52,10 @@ public static class GuestListLogic
                 }
                 else if (partySize > 10)
                 {
-                    Console.WriteLine("Your group is too big. You have to split it into two groups.");
+                    Console.WriteLine("There can be a maximum of 10 people in a group. You must split into two groups.");
                 }
             }
-        } while (partySize <= 0 && partySize <=10);
+        } while (partySize <= 0 || partySize > 10);
 
         return (partyName, partySize);
     }
@@ -90,7 +90,7 @@ public static class GuestListLogic
         do
         {
             Console.WriteLine("\nType \"next\" to continue adding guests.");
-            Console.WriteLine("Type \"end\" at the end of the party.\n");
+            Console.WriteLine("Type \"end\" at the end of the event.");
             readResult = Console.ReadLine();
             if (readResult != null)
             {
@@ -101,7 +101,7 @@ public static class GuestListLogic
                 }
                 else if (readResult != "next")
                 {
-                    Console.WriteLine("\nWrite \"next\" or \"end\" to proceed.");
+                    Console.WriteLine("Type \"next\" or \"end\" to proceed.");
                 }
             }
         } while (readResult != "next" && readResult != "end");
