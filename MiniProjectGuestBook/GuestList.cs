@@ -52,7 +52,7 @@ public static class GuestListLogic
                 }
                 else if (partySize > 10)
                 {
-                    Console.WriteLine("There can be a maximum of 10 people in a group. You must split into two groups.");
+                    Console.WriteLine("There can be a maximum of 10 people in a group. You must split into more groups.");
                 }
             }
         } while (partySize <= 0 || partySize > 10);
@@ -61,7 +61,7 @@ public static class GuestListLogic
     }
     public static List<string> AddToGuestList(List<string> guestList, string partyName, int partySize)
     {
-        guestList.Add($"{partyName} - {partySize} guests");
+        guestList.Add($"{partyName} - {partySize}" + (partySize == 1 ? "guest" : "guests"));
 
         return guestList;
     }
